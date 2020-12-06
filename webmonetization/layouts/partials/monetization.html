@@ -1,0 +1,13 @@
+{{ $content := "" }}
+{{ if eq $.Page.Params.monetization false }}
+{{ else if $.Page.Params.monetization }}
+  {{ $content = $.Page.Params.monetization }}
+{{ else if $.Site.Params.monetization }}
+  {{ $content = $.Site.Params.monetization }}
+{{ end }}
+{{ if ne $content "" }}
+  <meta name="monetization" content="{{ $content }}">
+  {{ $script := resources.Get "monetization.js" | minify }}
+  <link rel="preload" as="script" href="{{ $script.Permalink }}" type="text/javascript">
+  <script src="{{ $script.Permalink }}" async defer></script>
+{{ end }}

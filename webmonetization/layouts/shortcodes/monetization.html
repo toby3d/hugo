@@ -1,0 +1,12 @@
+{{ $state := "start" }}
+{{ if and .IsNamedParams (.Get "state") }}
+  {{ $state = .Get "state" }}
+{{ else if .Get 0 }}
+  {{ $state = .Get 0 }}
+{{ end }}
+{{ if (and (and (ne $state "start") (ne $state "progress")) (ne $state "stop")) }}
+  {{ errorf "monetization shortcode: state must be 'stop', 'progress' or 'start'" }}
+{{ end }}
+<section class="monetization {{ print "monetization_state_" $state }}" {{ if or (eq $.Page.Params.monetization false) (ne $state "stop") }}hidden{{ end }}>
+  {{ .Inner }}
+</section>
