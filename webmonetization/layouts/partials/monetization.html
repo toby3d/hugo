@@ -5,7 +5,7 @@
 {{ else if $.Site.Params.monetization }}
   {{ $content = $.Site.Params.monetization }}
 {{ end }}
-{{ if ne $content "" }}
+{{ if and (ne .Kind "404") (ne $content "") }}
   <meta name="monetization" content="{{ $content }}">
   {{ $script := resources.Get "monetization.js" | minify }}
   <link rel="preload" as="script" href="{{ $script.Permalink }}" type="text/javascript">
