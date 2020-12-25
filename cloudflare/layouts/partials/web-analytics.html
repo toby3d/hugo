@@ -1,0 +1,5 @@
+{{ with $.Site.Params.cloudflare.webAnalytics }}
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{'token':'{{ . | safeJS }}'}"></script>
+  <!-- End Cloudflare Web Analytics -->
+{{ end }}
