@@ -4,9 +4,9 @@ module:
     extended: false
     min: "0.79.0"
   mounts:
-  - source: assets/monetization.js
-    target: assets/monetization.js
-  - source: layouts/partials/monetization.html
-    target: layouts/partials/monetization.html
-  - source: layouts/shortcodes/monetization.html
-    target: layouts/shortcodes/monetization.html
+  - source: assets
+    target: assets
+  - source: layouts/partials
+    target: layouts/partials
+  - source: layouts/shortcodes
+    target: layouts/shortcodes
