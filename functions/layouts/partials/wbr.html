@@ -1,0 +1,9 @@
+{{- $result := slice -}}
+
+{{- range (split . "//") -}}
+  {{- $str := replaceRE "(\\:)" "$1<wbr>" . -}}
+  {{- $str = replaceRE "([\\/\\~\\.\\,\\-\\_\\?\\#\\%])" "<wbr>$1" $str -}}
+  {{- $result = $result | append (replaceRE "([\\=\\&])" "<wbr>$1<wbr>" $str) -}}
+{{- end -}}
+
+{{- return (delimit $result "//<wbr>") -}}

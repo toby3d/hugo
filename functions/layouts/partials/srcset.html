@@ -1,0 +1,20 @@
+{{- $params := dict
+  "min" (default site.Params.imaging.min 200)
+  "max" (default site.Params.imaging.max 1400)
+  "count" (default site.Params.imaging.count 20)
+-}}
+
+{{- $original := . -}}
+{{- $result := slice -}}
+{{- $width := $original.Width -}}
+
+{{- range $step := seq $params.count -}}
+  {{- $width = div $width 2 -}}
+  
+  {{- if and (ge $width $params.min) (le $width $params.max) -}}
+    {{- $image := $original.Resize (printf "%dx" $width) -}}
+    {{- $result = $result | append (printf "%s %dw" (absURL $image.RelPermalink) $image.Width) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return (cond (ge (len $result) 1) (printf "srcset=\"%s\"" (delimit $result ", ")) "") -}}

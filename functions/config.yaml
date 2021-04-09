@@ -1,0 +1,8 @@
+---
+module:
+  hugoVersion:
+    extended: true
+    min: "0.81.0"
+  mounts:
+  - source: layouts/partials
+    target: layouts/partials/functions
