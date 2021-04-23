@@ -8,7 +8,7 @@ configuration:
 
 ```yaml
 imports:
-- path: gitlab.com/toby3d/hugo/cloudflare
+  - path: gitlab.com/toby3d/hugo/cloudflare
 ```
 
 Then, connect and configure the necessary/all modules.
@@ -30,9 +30,12 @@ params:
 Inject `cloudflare/web-analytics` partial in your `<body>` (preferably as close as possible to the closing tag):
 
 ```html
+<head>
+  {{ partialCached "cloudflare/web-analytics/head" . $.Site.Language.Lang }}
+</head>
 ...
 <body>
   ...
-  {{ partial "cloudflare/web-analytics" . }}
+  {{ partialCached "cloudflare/web-analytics/body" . $.Site.Language.Lang }}
 </body>
 ```
