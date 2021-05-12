@@ -1,5 +1,3 @@
-{{ if ne $.Site.IsServer true }}
-  {{ with $.Site.Params.cloudflare.webAnalytics }}
-    <script src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{'token':'{{ . | safeJS }}'}" defer></script>
-  {{ end }}
+{{ with $.Site.Params.cloudflare.webAnalytics }}
+  <script src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{'token':'{{ . | safeJS }}'}" defer></script>
 {{ end }}
