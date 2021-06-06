@@ -23,19 +23,17 @@ about how it works and how to get the token.
 baseUrl: https://example.com/
 params:
   cloudflare:
-    webAnalytics: 1d59a54b73a94728a4a9ed1b09767b1f
+    webAnalytics:
+      token: 1d59a54b73a94728a4a9ed1b09767b1f
+      spa: true # For SPA apps/websites
 ```
 
 #### Template
 Inject `cloudflare/web-analytics` partial in your `<body>` (preferably as close as possible to the closing tag):
 
 ```html
-<head>
-  {{ partialCached "cloudflare/web-analytics/head" . $.Site.Language.Lang }}
-</head>
-...
 <body>
   ...
-  {{ partialCached "cloudflare/web-analytics/body" . $.Site.Language.Lang }}
+  {{ partialCached "cloudflare/web-analytics" . }}
 </body>
 ```

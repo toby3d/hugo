@@ -1,1 +1,12 @@
-{{ partialCached "web-analytics/body" . }}
+{{ with $.Site.Params.cloudflare.webAnalytics }}
+  {{- $spa := false -}}
+  {{- if .spa -}}
+    {{- $spa = .spa -}}
+  {{- end -}}
+  {{- $payload := dict
+    "token" .token
+    "spa" $spa
+  | jsonify -}}
+  <script src="https://static.cloudflareinsights.com/beacon.min.js"
+    {{ printf `data-cf-beacon='%s'` $payload | safeHTMLAttr }} defer></script>
+{{ end }}
