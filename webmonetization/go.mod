@@ -1,3 +1,3 @@
-module gitlab.com/toby3d/hugo/webmonetization
+module source.toby3d.me/toby3d/hugo/webmonetization
 
 go 1.15
